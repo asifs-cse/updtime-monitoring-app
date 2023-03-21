@@ -5,6 +5,7 @@
 //dependecies
 
 const http = require('http');
+const url = require('url');
 
 //app object -module scaffolding
 const app = {};
@@ -23,6 +24,11 @@ app.createServer = ()=>{
 }
 
 app.hadelReqRes = (req, res)=>{
+    //request handeling
+    const parsedUrl = url.parse(req.url, true);
+    const path = parsedUrl.pathname;
+    const treamedPah = path.replace(/^\+|\/+$/g, '');
+    console.log(treamedPah)
     res.end('Hello world');
 };
 
