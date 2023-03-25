@@ -24,6 +24,8 @@ app.createServer = ()=>{
     })
 }
 
+//app handler request
+
 app.hadelReqRes = (req, res)=>{
     //request handeling
     const parsedUrl = url.parse(req.url, true);
