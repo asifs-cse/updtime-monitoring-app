@@ -8,6 +8,8 @@
 
 const http = require('http');
 const url = require('url');
+const {StringDecoder} = require('string_decoder');
+const { read } = require('fs');
 
 //app object -module scaffolding
 const app = {};
@@ -38,9 +40,20 @@ app.hadelReqRes = (req, res)=>{
     const headesrsObject = req.headers;
     //console.log(headesrsObject);
 
+    const decoder = new StringDecoder('utf-8');
+    let realData ='';
+    req.on('data',(buffer)=>{
+        realData += decoder.write(buffer);
+    });
+
+    req.on('end',()=>{
+        realData += decoder.end();
+        console.log(realData);
+        //response handel
+        res.end('Hello world');
+    });
     
-    //response handel
-    res.end('Hello world');
+    
 };
 
 // start the server
