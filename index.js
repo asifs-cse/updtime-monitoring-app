@@ -32,7 +32,14 @@ app.hadelReqRes = (req, res)=>{
     const parsedUrl = url.parse(req.url, true);
     const path = parsedUrl.pathname;
     const treamedPah = path.replace(/^\+|\/+$/g, '');
-    console.log(treamedPah)
+    const method = req.method.toLowerCase();
+    const querySringObject = parsedUrl.query;
+    //console.log(querySringObject);
+    const headesrsObject = req.headers;
+    //console.log(headesrsObject);
+
+    
+    //response handel
     res.end('Hello world');
 };
 
